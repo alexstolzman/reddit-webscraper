@@ -3,7 +3,7 @@ var fs = require('fs');
 
 async function getPostTitles() {
 	try {
-		const URL = 'https://old.reddit.com/r/wildhockey/'
+		const URL = 'https://old.reddit.com/r/nhl/'
 		const browser = await puppeteer.launch()
 
 		const page = await browser.newPage()
@@ -26,7 +26,7 @@ async function getPostTitles() {
             count++
         }
 
-        await fs.writeFileSync('./files/posts.txt', allValues.join('\n'));
+        await fs.writeFileSync('./files/posts2.txt', allValues.join('\n'));
 
 		await browser.close()
 	} catch (error) {

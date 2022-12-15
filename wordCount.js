@@ -2,9 +2,9 @@ var fs = require('fs');
 
 function getWordCount(){
 
-    const wordMap= new Map();
+    let wordMap= new Map();
 
-    var array = fs.readFileSync('./files/posts.txt').toString().split(/\s+/);
+    var array = fs.readFileSync('./files/posts.txt').toString().replace(/[^\w\s]/gi, '').split(/\s+/);
     console.log(array[7])
     for(i in array){
         let key=String(array[i].toLowerCase())
@@ -12,19 +12,17 @@ function getWordCount(){
             let temp=wordMap.get(key)
             temp++
             wordMap.set(key,temp)
-            //console.log(wordMap.size)
         }
         else{
             wordMap.set(key,1)
-            //console.log(key)
         }
     }
 
+    wordMap = new Map([...wordMap.entries()].sort((a, b) => b[1] - a[1]));
+
     wordMap.forEach((value, key, map) => {
-        //console.log(value+ ": "+key )
         fs.appendFile('./files/wordCount.txt', `${key}: ${value}\n`, function (err) {
             if (err) return console.log(err);
-            //console.log('Appended!');
          });
     });
 

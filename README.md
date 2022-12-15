@@ -1,3 +1,1 @@
-subredditposts.js
-
-Gets titles of all posts on a subreddit(Reddit caps the number of posts at 1,000) and stores them in a text file.
+Currently gets all of the hot posts in a subreddit using Puppeteer(can only get up to 1000 posts this way as that is all Reddit allows), and then figures out the most used words. Note: I am only returning alphanumeric characters at the moment so it is not 100% exact, but it is still good enough for my purpose.
